@@ -4,7 +4,7 @@ import com.sgedts.wallet.dto.ChangePasswordDTO;
 import com.sgedts.wallet.dto.GetBalanceDTO;
 import com.sgedts.wallet.dto.GetInfoDTO;
 import com.sgedts.wallet.dto.LoginDTO;
-import com.sgedts.wallet.entity.User;
+import com.sgedts.wallet.model.User;
 import com.sgedts.wallet.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

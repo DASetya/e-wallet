@@ -1,6 +1,6 @@
 package com.sgedts.wallet.repository;
 
-import com.sgedts.wallet.entity.User;
+import com.sgedts.wallet.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

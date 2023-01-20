@@ -1,5 +1,6 @@
-package com.sgedts.wallet.entity;
+package com.sgedts.wallet.model;
 
+import com.sgedts.wallet.audit.Auditable;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,7 +13,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name = "users")
-public class User {
+public class User extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

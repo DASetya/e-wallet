@@ -1,7 +1,7 @@
 package com.sgedts.wallet.mapper;
 
 import com.sgedts.wallet.dto.UserDTO;
-import com.sgedts.wallet.entity.User;
+import com.sgedts.wallet.model.User;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
