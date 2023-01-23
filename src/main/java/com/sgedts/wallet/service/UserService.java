@@ -39,6 +39,7 @@ public class UserService {
             if (isValid(user.getPassword())){
                 user.setTransactionLimit(Constant.MAX_TRANSACTION_AMOUNT);
                 user.setIsBan(false);
+                user.setBalance(0L);
                 userRepository.save(user);
 //                Response response = new Response();
 //                response.setMessage("OK");
