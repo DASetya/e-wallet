@@ -16,9 +16,10 @@ import lombok.Setter;
 public class Transaction extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_transaction")
     private Long id;
     @ManyToOne
-    @JoinColumn(name = "username")
+    @JoinColumn(name = "id_user")
     private User user;
     @Column(name = "origin_username")
     private String originUsername;
@@ -29,8 +30,8 @@ public class Transaction extends Auditable {
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private Status status;
-    @Column(name = "change_in_percentage")
-    private Double changeInPercentage;
-    @Column(name = "balance_change_date")
-    private Double balanceChangeDate;
+//    @Column(name = "change_in_percentage")
+//    private Double changeInPercentage;
+//    @Column(name = "balance_change_date")
+//    private Double balanceChangeDate;
 }
