@@ -1,6 +1,7 @@
 package com.sgedts.wallet.controller;
 
 import com.sgedts.wallet.dto.TopupDTO;
+import com.sgedts.wallet.model.Transaction;
 import com.sgedts.wallet.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,5 +16,10 @@ public class TransactionController {
     @PostMapping("/transaction/topup")
     public void topup(@RequestBody TopupDTO topupDTO){
         transactionService.topup(topupDTO);
+    }
+
+    @PostMapping("/transaction/create")
+    public void transfer(@RequestBody Transaction transaction){
+        transactionService.transfer(transaction);
     }
 }
