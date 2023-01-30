@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Setter
 @Getter
 @AllArgsConstructor
@@ -28,9 +30,10 @@ public class User extends Auditable {
     private String ktp;
     @Column(name = "status")
     private Boolean isBan;
-
     @Column(name = "balance")
     private Long balance;
     @Column(name = "transaction_limit")
     private Long transactionLimit;
+    @OneToMany(mappedBy = "user")
+    private List<Transaction> transactions;
 }

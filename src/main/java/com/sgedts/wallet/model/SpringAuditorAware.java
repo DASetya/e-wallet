@@ -7,7 +7,6 @@ import java.util.Optional;
 public class SpringAuditorAware implements AuditorAware<String> {
     @Override
     public Optional<String> getCurrentAuditor() {
-//        return Optional.ofNullable("ramdhan");
         return null;
     }
 }
