@@ -1,6 +1,5 @@
 package com.sgedts.wallet.dto;
 
-import jakarta.persistence.Column;
 import lombok.Builder;
 
 @Builder

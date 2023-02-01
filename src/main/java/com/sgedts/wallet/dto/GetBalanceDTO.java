@@ -1,6 +1,5 @@
 package com.sgedts.wallet.dto;
 
-
 import lombok.Data;
 
 @Data

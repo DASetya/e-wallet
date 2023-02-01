@@ -42,8 +42,4 @@ public class Transaction extends Auditable {
     @Enumerated(EnumType.STRING)
     @Column(name = "type")
     private Type type;
-//    @Column(name = "change_in_percentage")
-//    private Double changeInPercentage;
-//    @Column(name = "balance_change_date")
-//    private Double balanceChangeDate;
 }

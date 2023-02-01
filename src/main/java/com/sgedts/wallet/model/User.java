@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import java.util.List;
 
 @Setter
@@ -16,12 +15,10 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 public class User extends Auditable {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_user")
     private Long id;
-
     @Column(name = "username", unique = true)
     private String username;
     @Column(name = "password")
@@ -36,4 +33,6 @@ public class User extends Auditable {
     private Long transactionLimit;
     @OneToMany(mappedBy = "user")
     private List<Transaction> transactions;
+    @Column(name = "wrong_password_counter")
+    private Integer wrongCounter;
 }

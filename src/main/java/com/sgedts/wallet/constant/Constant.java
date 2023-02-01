@@ -1,7 +1,6 @@
 package com.sgedts.wallet.constant;
 
 public class Constant {
-
     public static final long MAX_BALANCE = 10_000_000;
     public static final long MIN_BALANCE = 10_000;
     public static final long MAX_TRANSACTION_AMOUNT = 1_000_000;
