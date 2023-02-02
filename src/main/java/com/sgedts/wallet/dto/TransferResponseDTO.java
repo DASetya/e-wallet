@@ -8,6 +8,6 @@ public class TransferResponseDTO {
     private Long trxId;
     private String originUsername;
     private String destinationUsername;
-    private Long amount;
+    private String amount;
     private Status status;
 }

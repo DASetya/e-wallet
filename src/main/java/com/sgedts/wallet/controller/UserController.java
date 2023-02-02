@@ -10,6 +10,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.text.NumberFormat;
 
 @RestController
 @RequestMapping("/user")
@@ -18,6 +19,15 @@ public class UserController {
     UserService userService;
     @Autowired
     private ModelMapper modelMapper;
+
+    public GetBalanceDTO modelToDto(User user){
+        GetBalanceDTO getBalanceDTO = new GetBalanceDTO();
+        NumberFormat numberFormat = NumberFormat.getNumberInstance();
+        getBalanceDTO.setBalance(numberFormat.format(user.getBalance()));
+        getBalanceDTO.setTransactionLimit(user.getTransactionLimit());
+        return getBalanceDTO;
+    }
+
     @PostMapping("/registration")
     public void register(@RequestBody User user){
         userService.register(user);
@@ -25,8 +35,7 @@ public class UserController {
     @GetMapping("/{username}/getbalance")
     public ResponseEntity<GetBalanceDTO> getBalance(@PathVariable String username){
         User user = userService.getBalance(username);
-        GetBalanceDTO getBalanceDTO = modelMapper.map(user, GetBalanceDTO.class);
-        return ResponseEntity.ok().body(getBalanceDTO);
+        return ResponseEntity.ok().body(modelToDto(user));
     }
     @GetMapping("/{username}/getinfo")
     public ResponseEntity<GetInfoDTO> getInfo(@PathVariable String username){

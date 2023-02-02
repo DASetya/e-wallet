@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class GetBalanceDTO {
-    private Long balance;
+    private String balance;
     private Long transactionLimit;
 }

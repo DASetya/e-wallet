@@ -7,7 +7,7 @@ import com.sgedts.wallet.repository.TransactionRepository;
 import com.sgedts.wallet.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.text.NumberFormat;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -25,8 +25,6 @@ public class ReportService {
         String balanceChangeDate = date.format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
         List<User> list = userRepository.findAll();
         List<GetReportDTO> getReportDTOList = new ArrayList<>();
-        NumberFormat numberFormat = NumberFormat.getPercentInstance();
-        numberFormat.setMaximumFractionDigits(2);
 
         list.forEach(user -> {
             GetReportDTO getReportDTO = new GetReportDTO();
@@ -39,9 +37,11 @@ public class ReportService {
                     getReportDTO.setUsername(user.getUsername());
                     getReportDTO.setChangeInPercentage(changeInPercentage);
                 } else {
+                    DecimalFormat decimalFormat = new DecimalFormat("###.##");
                     double changeInPercentage = 1.0 * (lastTransaction - firstTransaction) / firstTransaction * 100;
                     getReportDTO.setUsername(user.getUsername());
-                    getReportDTO.setChangeInPercentage(numberFormat.format(changeInPercentage) + "%");
+                    getReportDTO.setChangeInPercentage(decimalFormat.format(changeInPercentage)+"%");
+
                 }
             } else {
                 getReportDTO.setUsername(user.getUsername());
