@@ -52,22 +52,19 @@ public class TransactionService {
         else if(user.getBalance() + topupDTO.getAmount() > Constant.MAX_BALANCE){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Max Balance 10000000");
         }
-        else {
-            user.setWrongCounter(0);
-            transaction.setUsername(topupDTO.getUsername());
-            transaction.setAmount(topupDTO.getAmount());
-            transaction.setStatus(Status.SETTLED);
-            transaction.setUser(user);
-            transaction.setDate(now);
-            transaction.setType(Type.TOPUP);
-            transaction.setBalanceBefore(user.getBalance());
-            transaction.setBalanceAfter(user.getBalance() + topupDTO.getAmount());
-            user.setBalance(user.getBalance() + topupDTO.getAmount());
-            transactionRepository.save(transaction);
-//            userRepository.save(user);
-        }
+        user.setWrongCounter(0);
+        transaction.setUsername(topupDTO.getUsername());
+        transaction.setAmount(topupDTO.getAmount());
+        transaction.setStatus(Status.SETTLED);
+        transaction.setUser(user);
+        transaction.setDate(now);
+        transaction.setType(Type.TOPUP);
+        transaction.setBalanceBefore(user.getBalance());
+        transaction.setBalanceAfter(user.getBalance() + topupDTO.getAmount());
+        user.setBalance(user.getBalance() + topupDTO.getAmount());
+        transactionRepository.save(transaction);
+//      userRepository.save(user);
     }
-
     public TransferResponseDTO transfer(TransferDTO transferDTO){
         User sender = userRepository.findByUsername(transferDTO.getUsername());
         User recipient = userRepository.findByUsername(transferDTO.getDestinationUsername());
