@@ -16,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.text.NumberFormat;
 import java.time.LocalDate;
 
 @Service
@@ -63,7 +64,6 @@ public class TransactionService {
         transaction.setBalanceAfter(user.getBalance() + topupDTO.getAmount());
         user.setBalance(user.getBalance() + topupDTO.getAmount());
         transactionRepository.save(transaction);
-//      userRepository.save(user);
     }
     public TransferResponseDTO transfer(TransferDTO transferDTO){
         User sender = userRepository.findByUsername(transferDTO.getUsername());
@@ -92,6 +92,9 @@ public class TransactionService {
         }
         else if(recipient.getUsername() == null){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Akun penerima tidak ada");
+        }
+        else if(sender.getUsername().equals(recipient.getUsername())){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Akun penerima tidak bisa sama dengan akun pengirim");
         }
         else if(transferDTO.getAmount() > sender.getTransactionLimit()){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Transaksi melebihi limit");
@@ -126,10 +129,11 @@ public class TransactionService {
         transactionRepository.save(recipientTransaction);
 
         TransferResponseDTO transferResponseDTO = new TransferResponseDTO();
+        NumberFormat numberFormat = NumberFormat.getNumberInstance();
         transferResponseDTO.setTrxId(senderTransaction.getId());
         transferResponseDTO.setOriginUsername(sender.getUsername());
         transferResponseDTO.setDestinationUsername(recipient.getUsername());
-        transferResponseDTO.setAmount(senderTransaction.getAmount());
+        transferResponseDTO.setAmount(numberFormat.format(senderTransaction.getAmount()));
         transferResponseDTO.setStatus(Status.SETTLED);
         return transferResponseDTO;
     }
