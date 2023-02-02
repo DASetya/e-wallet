@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -33,7 +31,6 @@ public class UserService {
         Matcher matcher = ktpPattern.matcher(ktp);
         return matcher.matches();
     }
-
     public void register(User user) {
         User user1 = userRepository.findByUsername(user.getUsername());
         if (user1 != null){
@@ -51,9 +48,6 @@ public class UserService {
             }
         }
     }
-    public void registerList(List<User> userList){
-        userRepository.saveAll(userList);
-    }
     public User getBalance(String username){
         User user = userRepository.findByUsername(username);
         if (user == null){
@@ -63,7 +57,6 @@ public class UserService {
             return userRepository.findByUsername(username);
         }
     }
-
     public User getInfo(String username) {
         User user = userRepository.findByUsername(username);
         if (user == null){
@@ -99,7 +92,6 @@ public class UserService {
     }
 
     public void addKtp(String username, User user) {
-//        User user1 = userRepository.findById(username).get();
         User user1 = userRepository.findByUsername(username);
         if (user1 == null){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Username Not Found");
